@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jSMTLIB">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jSMTLIB.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

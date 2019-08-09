@@ -68,28 +68,28 @@ public interface ModelMaker<B> {
             public IExpr mkBoolConst(String name) {
                 IExpr.ISymbol sym = exprFactory.symbol(name);
                 IResponse iResponseDeclare = solver.declare_fun(new C_declare_fun(sym, new LinkedList<>(), Sort.Bool()));
-                System.out.println("iResponseDeclare = " + iResponseDeclare);
+                //System.out.println("iResponseDeclare = " + iResponseDeclare);
                 return sym;
             }
 
             @Override
             public IExpr mkAnd(List<IExpr> iExprs) {
                 IExpr.IFcnExpr fcn = exprFactory.fcn(AND(), iExprs);
-                solver.assertExpr(fcn);
+                //solver.assertExpr(fcn);
                 return fcn;
             }
 
             @Override
             public IExpr mkOr(List<IExpr> iExprs) {
                 IExpr.IFcnExpr fcn = exprFactory.fcn(OR(), iExprs);
-                solver.assertExpr(fcn);
+               // solver.assertExpr(fcn);
                 return fcn;
             }
 
             @Override
             public IExpr mkNot(IExpr iExpr) {
                 IExpr.IFcnExpr fcn = exprFactory.fcn(NOT(), iExpr);
-                solver.assertExpr(fcn);
+               // solver.assertExpr(fcn);
                 return fcn;
             }
 

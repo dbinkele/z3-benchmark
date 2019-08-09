@@ -27,9 +27,9 @@ public interface Solverle<B> {
             @Override
             public int check(IExpr boolExpr) {
                 IResponse iResponse = solver.assertExpr(boolExpr);
-                System.out.println("iResponse = " + iResponse);
+            //    System.out.println("iResponse = " + iResponse);
                 IResponse res = solver.check_sat();
-                System.out.println("res = " + res);
+              //  System.out.println("res = " + res);
                 return res.equals(sat) ? 1 : res.equals(unsat) ? -1 : 0;
             }
         };

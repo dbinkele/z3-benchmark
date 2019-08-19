@@ -12,21 +12,15 @@ import java.util.stream.Stream;
 
 public class BenchmarkJni<B> {
 
-    private static final int NUMBER_COLORS = 4;
     private GraphGen grapGen;
-
-    public static final int SEED = 6066;
-
-    {
-        float edgePercent = 0.0844f;
-        int vertices = 20;
-        grapGen = new GraphGen(vertices, edgePercent, SEED);
-    }
-
+    private int numberColors;
     private Supplier<ModelMaker<B>> modelMakerSupplier;
 
-    BenchmarkJni(Supplier<ModelMaker<B>> modelMakerSupplier) {
+    BenchmarkJni(Supplier<ModelMaker<B>> modelMakerSupplier, GraphGen grapGen, int numberColors) {
         this.modelMakerSupplier = modelMakerSupplier;
+        this.grapGen = grapGen;
+
+        this.numberColors = numberColors;
     }
 
     void benchmark() {
@@ -35,7 +29,7 @@ public class BenchmarkJni<B> {
         B boolExpr = make3ColouringSat(grapGen, context);
 
         int check = solver.check(boolExpr);
-        //System.out.println("check = " + check);
+        System.out.println("check = " + check);
     }
 
 
@@ -45,7 +39,7 @@ public class BenchmarkJni<B> {
         Graph<Integer, DefaultEdge> graph = grapGen.get();
         //System.out.println("vertices " + graph.vertexSet().size() + " edges " + graph.edgeSet().size());
 
-        List<Map<Integer, B>> integerToColorVars = Stream.iterate(0, (x) -> x + 1).limit(NUMBER_COLORS)
+        List<Map<Integer, B>> integerToColorVars = Stream.iterate(0, (x) -> x + 1).limit(this.numberColors)
                 .map(x -> makeVertexToVar(context, graph, x))
                 .collect(Collectors.toList());
 

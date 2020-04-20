@@ -1,14 +1,38 @@
 package z3;
 
-import com.microsoft.z3.*;
+
+import com.microsoft.z3.ArithExpr;
+import com.microsoft.z3.BoolExpr;
+import com.microsoft.z3.Context;
+import com.microsoft.z3.Expr;
+import com.microsoft.z3.FPExpr;
+import com.microsoft.z3.FPNum;
+import com.microsoft.z3.FPRMSort;
+import com.microsoft.z3.FPSort;
+import com.microsoft.z3.Model;
+import com.microsoft.z3.RatNum;
+import com.microsoft.z3.Solver;
+import com.microsoft.z3.Status;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
-import java.math.RoundingMode;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Z3Testing {
+
+//    static {
+//        Path path = Paths.get(".").normalize().toAbsolutePath();
+//        String base = path.toString() + "/lib/";
+//        try {
+//            System.load(base + "z3java");
+//        } catch (UnsatisfiedLinkError var1) {
+//            System.load(base + "libz3java");
+//        }
+//
+//    }
 
     @Test
     public void testing() {
@@ -16,7 +40,7 @@ public class Z3Testing {
 
         ArithExpr ratNum = (ArithExpr) ctx.mkNumeral("42.03475", ctx.getRealSort());
         ArithExpr ratNum1 = (ArithExpr) ctx.mkNumeral("34.5", ctx.getRealSort());
-        ArithExpr x1 = (ArithExpr)ctx.mkConst("x", ctx.getRealSort());
+        ArithExpr x1 = (ArithExpr) ctx.mkConst("x", ctx.getRealSort());
 
         BoolExpr boolExpr = ctx.mkGe(x1, ratNum);
         Solver solver = ctx.mkSolver();
@@ -115,14 +139,24 @@ public class Z3Testing {
 
         System.out.println("OK, model: " + s.getModel().toString());
         Expr evaluate = s.getModel().evaluate(y, true);
-        FPExpr y1 = (FPExpr) y;
 
         System.out.println("OK, model: " + s.getModel().toString());
         int zz = 0;
 
     }
 
-    Model check(Context ctx, BoolExpr f, Status sat) {
+    @Test
+    public void consequences(){
+        Context context = new Context();
+        BoolExpr a = context.mkBoolConst("A");
+        BoolExpr b = context.mkBoolConst("B");
+
+        BoolExpr implies = context.mkImplies(a, b);
+
+
+    }
+
+    private Model check(Context ctx, BoolExpr f, Status sat) {
         Solver s = ctx.mkSolver();
         s.add(f);
         if (s.check() != sat)

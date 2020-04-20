@@ -2,6 +2,7 @@ package z3;
 
 import com.microsoft.z3.BoolExpr;
 import com.microsoft.z3.Context;
+import com.microsoft.z3.Solver;
 import org.smtlib.IExpr;
 import org.smtlib.IResponse;
 import org.smtlib.SMT;
@@ -74,23 +75,17 @@ public interface ModelMaker<B> {
 
             @Override
             public IExpr mkAnd(List<IExpr> iExprs) {
-                IExpr.IFcnExpr fcn = exprFactory.fcn(AND(), iExprs);
-                //solver.assertExpr(fcn);
-                return fcn;
+                return exprFactory.fcn(AND(), iExprs);
             }
 
             @Override
             public IExpr mkOr(List<IExpr> iExprs) {
-                IExpr.IFcnExpr fcn = exprFactory.fcn(OR(), iExprs);
-               // solver.assertExpr(fcn);
-                return fcn;
+                return exprFactory.fcn(OR(), iExprs);
             }
 
             @Override
             public IExpr mkNot(IExpr iExpr) {
-                IExpr.IFcnExpr fcn = exprFactory.fcn(NOT(), iExpr);
-               // solver.assertExpr(fcn);
-                return fcn;
+                return exprFactory.fcn(NOT(), iExpr);
             }
 
             @Override

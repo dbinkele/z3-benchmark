@@ -23,15 +23,12 @@ public interface Solverle<B> {
 
 
     static Solverle<IExpr> makejSMTLI(IResponse sat, IResponse unsat, final Solver_z3_4_3 solver) {
-        return new Solverle<IExpr>() {
-            @Override
-            public int check(IExpr boolExpr) {
-                IResponse iResponse = solver.assertExpr(boolExpr);
-            //    System.out.println("iResponse = " + iResponse);
-                IResponse res = solver.check_sat();
-              //  System.out.println("res = " + res);
-                return res.equals(sat) ? 1 : res.equals(unsat) ? -1 : 0;
-            }
+        return boolExpr -> {
+            IResponse iResponse = solver.assertExpr(boolExpr);
+        //    System.out.println("iResponse = " + iResponse);
+            IResponse res = solver.check_sat();
+          //  System.out.println("res = " + res);
+            return res.equals(sat) ? 1 : res.equals(unsat) ? -1 : 0;
         };
     }
 }

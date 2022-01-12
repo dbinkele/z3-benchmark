@@ -17,6 +17,7 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
@@ -27,7 +28,6 @@
             <version>1.3.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.jgrapht/jgrapht-ext -->
         <dependency>
             <groupId>org.jgrapht</groupId>
             <artifactId>jgrapht-ext</artifactId>
@@ -46,11 +46,52 @@
         </dependency>
 
         <dependency>
-            <groupId>javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.12.1.GA</version>
+            <groupId>com.microsoft</groupId>
+            <artifactId>z3</artifactId>
+            <version>4.8.8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/com.microsoft.z3.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>jsmtlib</groupId>
+            <artifactId>z</artifactId>
+            <version>4.8.8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jSMTLIB.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable -->
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
         </dependency>
 
 
+
+
     </dependencies>
+
+
 </project>

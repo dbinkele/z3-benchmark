@@ -1,14 +1,26 @@
 package z3;
 
 import com.microsoft.z3.BoolExpr;
+import com.microsoft.z3.Context;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.smtlib.IExpr;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class BenchmarkJniTest {
 
-//    private static final int TIMES = 12;
+    static {
+      LibUtil.loadLib();
+    }
+
+
+    //    private static final int TIMES = 12;
 //    private static final int NUMBER_COLORS = 2;
 //    private static final int SEED = 6066;//0.0844f;
 //    private static final float EDGE_PERCENT = 0.99f;//20;
@@ -17,9 +29,9 @@ public class BenchmarkJniTest {
     private Scenario scenario;
 
     @Before
-    public void setup(){
-        scenario = new Scenario(1200, 4, 6066, 0.0844f, 99);
-                //new Scenario(12, 2, 6066,0.99f, 1100);
+    public void setup() {
+        scenario = new Scenario(200, 3, 6066, 0.2244f, 1064);
+        //new Scenario(12, 2, 6066,0.99f, 1100);
         graphGen = new GraphGen(scenario.VERTICES, scenario.EDGE_PERCENT, scenario.SEED);
     }
 
@@ -32,7 +44,7 @@ public class BenchmarkJniTest {
         Stream.generate(() -> 0).limit(scenario.TIMES)
                 .forEach(x -> benchmark.benchmark());
         long end = System.currentTimeMillis();
-        System.out.println("Dur: " + (end-start) / scenario.TIMES);
+        System.out.println("Dur: " + (end - start) / scenario.TIMES);
     }
 
 
@@ -44,16 +56,16 @@ public class BenchmarkJniTest {
         Stream.generate(() -> 0).limit(scenario.TIMES)
                 .forEach(x -> benchmark.benchmark());
         long end = System.currentTimeMillis();
-        System.out.println("Dur: " + (end-start) / scenario.TIMES);
+        System.out.println("Dur: " + (end - start) / scenario.TIMES);
     }
 
 
     public static class Scenario {
-        public  final int TIMES;
-        public  final int NUMBER_COLORS;
-        public  final int SEED;
-        public  final float EDGE_PERCENT;
-        public  final int VERTICES;
+        public final int TIMES;
+        public final int NUMBER_COLORS;
+        public final int SEED;
+        public final float EDGE_PERCENT;
+        public final int VERTICES;
 
         public Scenario(int times, int number_colors, int seed, float edge_percent, int vertices) {
             TIMES = times;

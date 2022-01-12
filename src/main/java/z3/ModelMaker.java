@@ -1,8 +1,8 @@
 package z3;
 
+
 import com.microsoft.z3.BoolExpr;
 import com.microsoft.z3.Context;
-import com.microsoft.z3.Solver;
 import org.smtlib.IExpr;
 import org.smtlib.IResponse;
 import org.smtlib.SMT;
@@ -61,7 +61,7 @@ public interface ModelMaker<B> {
     static ModelMaker<IExpr> makejSMTLIB() {
         SMT smt = new SMT();
         IExpr.IFactory exprFactory = smt.smtConfig.exprFactory;
-        Solver_z3_4_4 solver = new Solver_z3_4_4(smt.smtConfig, "/Library/z3-4.7.1-x64-osx-10.11.6/bin/z3");
+        Solver_z3_4_4 solver = new Solver_z3_4_4(smt.smtConfig, "/Library/z3/z3-4.7.1-x64-osx-10.11.6/bin/z3");
         solver.start();
         solver.set_logic("QF_UF", null);
         return new ModelMaker<IExpr>() {

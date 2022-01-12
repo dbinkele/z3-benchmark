@@ -13,6 +13,7 @@ import com.microsoft.z3.Model;
 import com.microsoft.z3.RatNum;
 import com.microsoft.z3.Solver;
 import com.microsoft.z3.Status;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -21,17 +22,19 @@ import java.math.MathContext;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+
 public class Z3Testing {
 
+    static {
+        LibUtil.loadLib();
+    }
+
 //    static {
-//        Path path = Paths.get(".").normalize().toAbsolutePath();
-//        String base = path.toString() + "/lib/";
-//        try {
-//            System.load(base + "z3java");
-//        } catch (UnsatisfiedLinkError var1) {
-//            System.load(base + "libz3java");
-//        }
 //
+//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+//        System.out.println("-----> Load Lib z3java ---->");
+//        System.load("/Users/dbinkele/private/myprojects/java/z3-benchmark/lib/libz3java.dylib");
+//        System.out.println("--------> Load Lib Ende");
 //    }
 
     @Test
@@ -146,7 +149,7 @@ public class Z3Testing {
     }
 
     @Test
-    public void consequences(){
+    public void consequences() {
         Context context = new Context();
         BoolExpr a = context.mkBoolConst("A");
         BoolExpr b = context.mkBoolConst("B");

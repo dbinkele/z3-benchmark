@@ -2,6 +2,7 @@
   <library name="jSMTLIB">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/jSMTLIB.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../z3/build/com.microsoft.z3.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
